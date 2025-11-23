@@ -30,7 +30,7 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
-                .password("123") // coloque sua senha fixa
+                .password("123")
                 .roles("USER")
                 .build();
 
