@@ -1,32 +1,19 @@
 package com.br.sacaso.domain.service;
 
-import com.br.sacaso.domain.entity.Torneio;
-import com.br.sacaso.domain.repository.TorneioRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.br.sacaso.api.dto.torneio.TorneioRequest;
+import com.br.sacaso.api.dto.torneio.TorneioResponse;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class TorneioService {
+public interface TorneioService {
 
-    private final TorneioRepository torneioRepository;
+    TorneioResponse criar(TorneioRequest request);
 
-    public Torneio salvar(Torneio torneio) {
-        return torneioRepository.save(torneio);
-    }
+    List<TorneioResponse> listar();
 
-    public List<Torneio> listarTodos() {
-        return torneioRepository.findAll();
-    }
+    TorneioResponse buscarPorId(Long id);
 
-    public Torneio buscarPorId(Long id) {
-        return torneioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
-    }
+    TorneioResponse atualizar(Long id, TorneioRequest request);
 
-    public void deletar(Long id) {
-        torneioRepository.deleteById(id);
-    }
+    void deletar(Long id);
 }

@@ -1,16 +1,18 @@
 package com.br.sacaso.domain.entity;
 
+import com.br.sacaso.domain.enums.FaseTorneio;
+import com.br.sacaso.domain.enums.StatusPartida;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Data
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "partidas")
 public class Partida {
 
     @Id
@@ -18,17 +20,25 @@ public class Partida {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "torneio_id")
+    private Torneio torneio;
+
+    @ManyToOne
+    @JoinColumn(name = "time_a_id")
     private Time timeA;
 
     @ManyToOne
+    @JoinColumn(name = "time_b_id")
     private Time timeB;
 
-    private Integer pontosTimeA;
+    private Integer placarA;
+    private Integer placarB;
 
-    private Integer pontosTimeB;
+    private LocalDateTime dataHora;
 
-    private LocalDate dataPartida;
+    @Enumerated(EnumType.STRING)
+    private FaseTorneio fase;
 
-    @ManyToOne
-    private Fase fase;
+    @Enumerated(EnumType.STRING)
+    private StatusPartida status;
 }

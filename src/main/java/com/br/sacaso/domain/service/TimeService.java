@@ -1,32 +1,19 @@
 package com.br.sacaso.domain.service;
 
-import com.br.sacaso.domain.entity.Time;
-import com.br.sacaso.domain.repository.TimeRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.br.sacaso.api.dto.time.TimeRequest;
+import com.br.sacaso.api.dto.time.TimeResponse;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class TimeService {
+public interface TimeService {
 
-    private final TimeRepository timeRepository;
+    TimeResponse criar(TimeRequest request);
 
-    public Time salvar(Time time) {
-        return timeRepository.save(time);
-    }
+    List<TimeResponse> listar();
 
-    public List<Time> listarTodos() {
-        return timeRepository.findAll();
-    }
+    TimeResponse buscarPorId(Long id);
 
-    public Time buscarPorId(Long id) {
-        return timeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Time não encontrado"));
-    }
+    TimeResponse atualizar(Long id, TimeRequest request);
 
-    public void deletar(Long id) {
-        timeRepository.deleteById(id);
-    }
+    void deletar(Long id);
 }

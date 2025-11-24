@@ -1,45 +1,27 @@
 package com.br.sacaso.api.controller;
 
-import com.br.sacaso.domain.entity.Torneio;
-import com.br.sacaso.domain.service.TorneioService;
-import lombok.RequiredArgsConstructor;
+import com.br.sacaso.api.dto.torneio.TorneioRequest;
+import com.br.sacaso.api.dto.torneio.TorneioResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequestMapping("/api/torneios")
-@RequiredArgsConstructor
-public class TorneioController {
-
-    private final TorneioService torneioService;
+public interface TorneioController {
 
     @PostMapping
-    public ResponseEntity<Torneio> criar(@RequestBody Torneio torneio) {
-        return ResponseEntity.ok(torneioService.salvar(torneio));
-    }
+    ResponseEntity<TorneioResponse> criar(@RequestBody TorneioRequest request);
 
     @GetMapping
-    public ResponseEntity<List<Torneio>> listarTodos() {
-        return ResponseEntity.ok(torneioService.listarTodos());
-    }
+    ResponseEntity<List<TorneioResponse>> listar();
 
     @GetMapping("/{id}")
-    public ResponseEntity<Torneio> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(torneioService.buscarPorId(id));
-    }
+    ResponseEntity<TorneioResponse> buscarPorId(@PathVariable Long id);
 
     @PutMapping("/{id}")
-    public ResponseEntity<Torneio> atualizar(@PathVariable Long id, @RequestBody Torneio torneioAtualizado) {
-        Torneio torneioExistente = torneioService.buscarPorId(id);
-        torneioExistente.setNome(torneioAtualizado.getNome());
-        return ResponseEntity.ok(torneioService.salvar(torneioExistente));
-    }
+    ResponseEntity<TorneioResponse> atualizar(@PathVariable Long id, @RequestBody TorneioRequest request);
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        torneioService.deletar(id);
-        return ResponseEntity.noContent().build();
-    }
+    ResponseEntity<Void> deletar(@PathVariable Long id);
 }

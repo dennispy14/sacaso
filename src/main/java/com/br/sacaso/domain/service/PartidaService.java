@@ -1,32 +1,20 @@
 package com.br.sacaso.domain.service;
 
-import com.br.sacaso.domain.entity.Partida;
-import com.br.sacaso.domain.repository.PartidaRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.br.sacaso.api.dto.partida.*;
+import com.br.sacaso.domain.enums.StatusPartida;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class PartidaService {
+public interface PartidaService {
 
-    private final PartidaRepository partidaRepository;
+    PartidaResponse criar(PartidaRequest request);
 
-    public Partida salvar(Partida partida) {
-        return partidaRepository.save(partida);
-    }
+    List<PartidaResponse> listarPorTorneio(Long torneioId);
 
-    public List<Partida> listarTodas() {
-        return partidaRepository.findAll();
-    }
+    PartidaResponse buscarPorId(Long id);
 
-    public Partida buscarPorId(Long id) {
-        return partidaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Partida não encontrada"));
-    }
+    PartidaResponse atualizarPlacar(Long id, Integer placarA, Integer placarB);
 
-    public void deletar(Long id) {
-        partidaRepository.deleteById(id);
-    }
+    PartidaResponse atualizarStatus(Long id, StatusPartida novoStatus);
+
 }

@@ -1,8 +1,8 @@
 package com.br.sacaso.api.controller;
 
 
-import com.br.sacaso.api.dto.request.JogadorRequest;
-import com.br.sacaso.api.dto.response.JogadorResponse;
+import com.br.sacaso.api.dto.jogador.JogadorRequest;
+import com.br.sacaso.api.dto.jogador.JogadorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
