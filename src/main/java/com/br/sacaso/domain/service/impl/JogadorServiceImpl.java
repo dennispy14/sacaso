@@ -1,11 +1,11 @@
 package com.br.sacaso.domain.service.impl;
 
-import com.br.sacaso.api.dto.request.JogadorRequest;
-import com.br.sacaso.api.dto.response.JogadorResponse;
+import com.br.sacaso.api.dto.jogador.JogadorRequest;
+import com.br.sacaso.api.dto.jogador.JogadorResponse;
 import com.br.sacaso.domain.entity.Jogador;
 import com.br.sacaso.domain.repository.JogadorRepository;
 import com.br.sacaso.domain.service.JogadorService;
-import com.br.sacaso.mapper.JogadorMapper;
+import com.br.sacaso.api.mapper.JogadorMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

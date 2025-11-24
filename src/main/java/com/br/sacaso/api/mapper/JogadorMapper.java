@@ -1,7 +1,7 @@
-package com.br.sacaso.mapper;
+package com.br.sacaso.api.mapper;
 
-import com.br.sacaso.api.dto.request.JogadorRequest;
-import com.br.sacaso.api.dto.response.JogadorResponse;
+import com.br.sacaso.api.dto.jogador.JogadorRequest;
+import com.br.sacaso.api.dto.jogador.JogadorResponse;
 import com.br.sacaso.domain.entity.Jogador;
 import org.mapstruct.*;
 

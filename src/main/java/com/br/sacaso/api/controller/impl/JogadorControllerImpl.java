@@ -1,7 +1,8 @@
-package com.br.sacaso.api.controller;
+package com.br.sacaso.api.controller.impl;
 
-import com.br.sacaso.api.dto.request.JogadorRequest;
-import com.br.sacaso.api.dto.response.JogadorResponse;
+import com.br.sacaso.api.controller.JogadorController;
+import com.br.sacaso.api.dto.jogador.JogadorRequest;
+import com.br.sacaso.api.dto.jogador.JogadorResponse;
 import com.br.sacaso.domain.service.impl.JogadorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

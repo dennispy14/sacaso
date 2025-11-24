@@ -28,6 +28,4 @@ public class Torneio {
 
     private String descricao;
 
-    @OneToMany(mappedBy = "torneio", cascade = CascadeType.ALL)
-    private List<Fase> fases;
 }

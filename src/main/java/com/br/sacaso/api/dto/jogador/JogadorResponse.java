@@ -1,4 +1,4 @@
-package com.br.sacaso.api.dto.response;
+package com.br.sacaso.api.dto.jogador;
 
 public record JogadorResponse(
         Long id,

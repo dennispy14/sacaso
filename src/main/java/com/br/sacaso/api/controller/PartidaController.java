@@ -1,38 +1,25 @@
 package com.br.sacaso.api.controller;
 
-import com.br.sacaso.domain.entity.Partida;
-import com.br.sacaso.domain.service.PartidaService;
-import lombok.RequiredArgsConstructor;
+import com.br.sacaso.api.dto.partida.PartidaRequest;
+import com.br.sacaso.api.dto.partida.PartidaResponse;
+import com.br.sacaso.api.dto.partida.PartidaStatusRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/partidas")
-@RequiredArgsConstructor
-public class PartidaController {
+@RequestMapping("/partidas")
+public interface PartidaController {
+    @PatchMapping("/{id}/placar")
+    ResponseEntity<PartidaResponse> atualizarPlacar(@PathVariable Long id,
+                                                    @RequestParam Integer placarA,
+                                                    @RequestParam Integer placarB);
 
-    private final PartidaService partidaService;
+    @GetMapping("/torneio/{torneioId}")
+    ResponseEntity<List<PartidaResponse>> listarPorTorneio(Long torneioId);
 
-    @PostMapping
-    public ResponseEntity<Partida> criar(@RequestBody Partida partida) {
-        return ResponseEntity.ok(partidaService.salvar(partida));
-    }
+    @PutMapping("/{id}/status")
+    ResponseEntity<PartidaResponse> atualizarStatus(@PathVariable Long id,
+                                                    @RequestBody PartidaStatusRequest request);
 
-    @GetMapping
-    public ResponseEntity<List<Partida>> listarTodas() {
-        return ResponseEntity.ok(partidaService.listarTodas());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Partida> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(partidaService.buscarPorId(id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        partidaService.deletar(id);
-        return ResponseEntity.noContent().build();
-    }
 }
