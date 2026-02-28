@@ -18,15 +18,24 @@ public interface PartidaMapper {
     @Mapping(target = "torneio", source = "torneio")
     @Mapping(target = "timeA", source = "timeA")
     @Mapping(target = "timeB", source = "timeB")
-    @Mapping(target = "dataHora", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "dataHora", source = "request.dateTime")
+    @Mapping(target = "fase", source = "request.phase")
     Partida toEntity(PartidaRequest request, Torneio torneio, Time timeA, Time timeB);
 
     // MapStruct resolve automaticamente os getters
-    @Mapping(target = "torneioId", source = "torneio.id")
-    @Mapping(target = "timeAId", source = "timeA.id")
-    @Mapping(target = "timeBId", source = "timeB.id")
+    @Mapping(target = "tournamentId", source = "torneio.id")
+    @Mapping(target = "teamAId", source = "timeA.id")
+    @Mapping(target = "teamBId", source = "timeB.id")
+    @Mapping(target = "scoreA", source = "placarA")
+    @Mapping(target = "scoreB", source = "placarB")
+    @Mapping(target = "dateTime", source = "dataHora")
+    @Mapping(target = "phase", source = "fase")
+    @Mapping(target = "phaseDescription", source = "fase") // Precisa de um qualificador se quiser a descrição? Ou
+                                                           // MapStruct resolve enum?
     PartidaResponse toResponse(Partida partida);
 
     @Mapping(target = "status", ignore = true)
+    @Mapping(target = "placarA", source = "scoreTeamA")
+    @Mapping(target = "placarB", source = "scoreTeamB")
     void updateResultadoFromRequest(PartidaResultadoRequest request, @MappingTarget Partida entity);
 }

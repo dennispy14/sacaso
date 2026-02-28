@@ -1,6 +1,6 @@
 package com.br.sacaso.api.dto.jogador;
 
-public record JogadorRequest (
-        String nome,
-        Integer idade
-){}
+public record JogadorRequest(
+                String name,
+                Integer age) {
+}

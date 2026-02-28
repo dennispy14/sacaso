@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/times")
+@RequestMapping("/api/teams")
 public interface TimeController {
 
     @PostMapping

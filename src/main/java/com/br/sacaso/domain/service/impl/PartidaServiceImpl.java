@@ -22,13 +22,13 @@ public class PartidaServiceImpl implements PartidaService {
     @Override
     public PartidaResponse criar(PartidaRequest req) {
 
-        var torneio = torneioRepository.findById(req.torneioId())
+        var torneio = torneioRepository.findById(req.tournamentId())
                 .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
 
-        var timeA = timeRepository.findById(req.timeAId())
+        var timeA = timeRepository.findById(req.teamAId())
                 .orElseThrow(() -> new RuntimeException("Time A não encontrado"));
 
-        var timeB = timeRepository.findById(req.timeBId())
+        var timeB = timeRepository.findById(req.teamBId())
                 .orElseThrow(() -> new RuntimeException("Time B não encontrado"));
 
         var partida = mapper.toEntity(req, torneio, timeA, timeB);
@@ -71,8 +71,7 @@ public class PartidaServiceImpl implements PartidaService {
         // validação básica de transição de status
         if (!isValidTransition(partida.getStatus(), novoStatus)) {
             throw new IllegalStateException(
-                    "Transição de status inválida: " + partida.getStatus() + " -> " + novoStatus
-            );
+                    "Transição de status inválida: " + partida.getStatus() + " -> " + novoStatus);
         }
 
         partida.setStatus(novoStatus);
@@ -81,7 +80,8 @@ public class PartidaServiceImpl implements PartidaService {
     }
 
     private boolean isValidTransition(StatusPartida atual, StatusPartida novoStatus) {
-        if (atual == null) return true;
+        if (atual == null)
+            return true;
         switch (atual) {
             case AGENDADA:
                 return novoStatus == StatusPartida.EM_ANDAMENTO || novoStatus == StatusPartida.CANCELADA;

@@ -6,14 +6,14 @@ import com.br.sacaso.domain.enums.StatusPartida;
 import java.time.LocalDateTime;
 
 public record PartidaResponse(
-        Long id,
-        Long torneioId,
-        Long timeAId,
-        Long timeBId,
-        Integer placarA,
-        Integer placarB,
-        LocalDateTime dataHora,
-        FaseTorneio fase,
-        String faseDescricao,
-        StatusPartida status
-) {}
+                Long id,
+                Long tournamentId,
+                Long teamAId,
+                Long teamBId,
+                Integer scoreA,
+                Integer scoreB,
+                LocalDateTime dateTime,
+                FaseTorneio phase,
+                String phaseDescription,
+                StatusPartida status) {
+}

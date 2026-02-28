@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/jogadores")
+@RequestMapping("/api/players")
 public interface JogadorController {
     @PostMapping
     ResponseEntity<JogadorResponse> criar(@RequestBody JogadorRequest request);

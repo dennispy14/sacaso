@@ -4,9 +4,9 @@ import com.br.sacaso.domain.enums.FaseTorneio;
 import java.time.LocalDateTime;
 
 public record PartidaRequest(
-        Long torneioId,
-        Long timeAId,
-        Long timeBId,
-        LocalDateTime dataHora,
-        FaseTorneio fase
-) {}
+                Long tournamentId,
+                Long teamAId,
+                Long teamBId,
+                LocalDateTime dateTime,
+                FaseTorneio phase) {
+}
