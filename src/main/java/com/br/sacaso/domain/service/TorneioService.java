@@ -16,4 +16,8 @@ public interface TorneioService {
     TorneioResponse atualizar(Long id, TorneioRequest request);
 
     void deletar(Long id);
+
+    void vincularTime(Long torneioId, Long timeId);
+
+    void desvincularTime(Long torneioId, Long timeId);
 }

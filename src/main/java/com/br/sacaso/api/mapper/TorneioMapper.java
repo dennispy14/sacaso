@@ -1,27 +1,47 @@
 package com.br.sacaso.api.mapper;
 
+import com.br.sacaso.api.dto.arena.ArenaResponse;
 import com.br.sacaso.api.dto.torneio.TorneioRequest;
 import com.br.sacaso.api.dto.torneio.TorneioResponse;
+import com.br.sacaso.domain.entity.Arena;
 import com.br.sacaso.domain.entity.Torneio;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, uses = {TimeMapper.class})
 public interface TorneioMapper {
 
-    @Mapping(target = "nome", source = "name")
-    @Mapping(target = "local", source = "location")
-    @Mapping(target = "descricao", source = "description")
+    @Mapping(target = "nome", source = "nome")
+    @Mapping(target = "dataInicio", source = "startDate")
+    @Mapping(target = "dataFim", source = "endDate")
+    @Mapping(target = "horaInicio", source = "startTime")
+    @Mapping(target = "descricao", source = "descricao")
+    @Mapping(target = "arena", ignore = true)
     Torneio toEntity(TorneioRequest request);
 
-    @Mapping(target = "name", source = "nome")
-    @Mapping(target = "location", source = "local")
-    @Mapping(target = "description", source = "descricao")
+    @Mapping(target = "nome", source = "nome")
+    @Mapping(target = "startDate", source = "dataInicio")
+    @Mapping(target = "endDate", source = "dataFim")
+    @Mapping(target = "startTime", source = "horaInicio")
+    @Mapping(target = "arena", source = "arena", qualifiedByName = "arenaToDto")
+    @Mapping(target = "descricao", source = "descricao")
+    @Mapping(target = "times", source = "times")
     TorneioResponse toResponse(Torneio entity);
 
-    @Mapping(target = "nome", source = "name")
-    @Mapping(target = "local", source = "location")
-    @Mapping(target = "descricao", source = "description")
+    @Mapping(target = "nome", source = "nome")
+    @Mapping(target = "dataInicio", source = "startDate")
+    @Mapping(target = "dataFim", source = "endDate")
+    @Mapping(target = "horaInicio", source = "startTime")
+    @Mapping(target = "descricao", source = "descricao")
+    @Mapping(target = "arena", ignore = true)
     void updateEntityFromRequest(TorneioRequest request, @MappingTarget Torneio entity);
+
+    @Named("arenaToDto")
+    default ArenaResponse arenaToDto(Arena arena) {
+        if (arena == null) return null;
+        return new ArenaResponse(arena.getId(), arena.getNome(), arena.getLocal());
+    }
 }

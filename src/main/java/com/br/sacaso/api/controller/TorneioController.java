@@ -24,4 +24,10 @@ public interface TorneioController {
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deletar(@PathVariable Long id);
+
+    @PostMapping("/{torneioId}/times/{timeId}")
+    ResponseEntity<Void> vincularTime(@PathVariable Long torneioId, @PathVariable Long timeId);
+
+    @DeleteMapping("/{torneioId}/times/{timeId}")
+    ResponseEntity<Void> desvincularTime(@PathVariable Long torneioId, @PathVariable Long timeId);
 }

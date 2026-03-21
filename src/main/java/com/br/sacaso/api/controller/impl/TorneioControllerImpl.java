@@ -41,4 +41,16 @@ public class TorneioControllerImpl implements TorneioController {
         torneioService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Override
+    public ResponseEntity<Void> vincularTime(Long torneioId, Long timeId) {
+        torneioService.vincularTime(torneioId, timeId);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> desvincularTime(Long torneioId, Long timeId) {
+        torneioService.desvincularTime(torneioId, timeId);
+        return ResponseEntity.noContent().build();
+    }
 }
