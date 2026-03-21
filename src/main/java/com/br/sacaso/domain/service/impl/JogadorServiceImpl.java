@@ -3,7 +3,9 @@ package com.br.sacaso.domain.service.impl;
 import com.br.sacaso.api.dto.jogador.JogadorRequest;
 import com.br.sacaso.api.dto.jogador.JogadorResponse;
 import com.br.sacaso.domain.entity.Jogador;
+import com.br.sacaso.domain.entity.Time;
 import com.br.sacaso.domain.repository.JogadorRepository;
+import com.br.sacaso.domain.repository.TimeRepository;
 import com.br.sacaso.domain.service.JogadorService;
 import com.br.sacaso.api.mapper.JogadorMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +18,19 @@ import java.util.List;
 public class JogadorServiceImpl implements JogadorService {
 
     private final JogadorRepository jogadorRepository;
+    private final TimeRepository timeRepository;
     private final JogadorMapper jogadorMapper;
 
     @Override
     public JogadorResponse criar(JogadorRequest request) {
         Jogador jogador = jogadorMapper.toEntity(request);
+        
+        if (request.team() != null && !request.team().isBlank()) {
+            Time time = timeRepository.findByNome(request.team())
+                    .orElseThrow(() -> new RuntimeException("Time não encontrado"));
+            jogador.setTime(time);
+        }
+        
         Jogador salvo = jogadorRepository.save(jogador);
         return jogadorMapper.toResponse(salvo);
     }
@@ -46,6 +56,14 @@ public class JogadorServiceImpl implements JogadorService {
                 .orElseThrow(() -> new RuntimeException("Jogador não encontrado"));
 
         jogadorMapper.updateEntityFromRequest(request, jogador);
+
+        if (request.team() != null && !request.team().isBlank()) {
+            Time time = timeRepository.findByNome(request.team())
+                    .orElseThrow(() -> new RuntimeException("Time não encontrado"));
+            jogador.setTime(time);
+        } else {
+            jogador.setTime(null);
+        }
 
         Jogador atualizado = jogadorRepository.save(jogador);
         return jogadorMapper.toResponse(atualizado);

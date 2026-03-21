@@ -22,5 +22,13 @@ public class Jogador {
 
     private String genero;
 
+    private String posicao;
+
+    private String status;
+
     private String cidade;
+
+    @ManyToOne
+    @JoinColumn(name = "time_id")
+    private Time time;
 }

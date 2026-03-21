@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .cors(withDefaults()) // 🔥 ATIVA CORS
                 .csrf(csrf -> csrf.disable()) // 🔥 DESABILITA CSRF PARA PERMITIR POST/PUT/DELETE
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // 🔥 PERMITE ACESSO PÚBLICO À API EM DESENVOLVIMENTO
+                        .requestMatchers("/api/**", "/error").permitAll() // 🔥 PERMITE ACESSO PÚBLICO À API EM DESENVOLVIMENTO
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .build();

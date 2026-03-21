@@ -21,11 +21,6 @@ public class Time {
 
     private String categoria;
 
-    @ManyToMany
-    @JoinTable(
-            name = "time_jogadores",
-            joinColumns = @JoinColumn(name = "time_id"),
-            inverseJoinColumns = @JoinColumn(name = "jogador_id")
-    )
+    @OneToMany(mappedBy = "time")
     private List<Jogador> jogadores;
 }

@@ -10,14 +10,23 @@ public interface JogadorMapper {
 
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "idade", source = "age")
+    @Mapping(target = "genero", source = "gender")
+    @Mapping(target = "posicao", source = "position")
+    @Mapping(target = "time.nome", source = "team")
     Jogador toEntity(JogadorRequest request);
 
     @Mapping(target = "name", source = "nome")
     @Mapping(target = "age", source = "idade")
+    @Mapping(target = "gender", source = "genero")
+    @Mapping(target = "position", source = "posicao")
+    @Mapping(target = "team", source = "time.nome")
     JogadorResponse toResponse(Jogador entity);
 
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "idade", source = "age")
+    @Mapping(target = "genero", source = "gender")
+    @Mapping(target = "posicao", source = "position")
+    @Mapping(target = "time.nome", source = "team")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromRequest(JogadorRequest request, @MappingTarget Jogador entity);
 }
