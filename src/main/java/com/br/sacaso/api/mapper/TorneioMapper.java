@@ -26,7 +26,7 @@ public interface TorneioMapper {
     @Mapping(target = "startDate", source = "dataInicio")
     @Mapping(target = "endDate", source = "dataFim")
     @Mapping(target = "startTime", source = "horaInicio")
-    @Mapping(target = "arena", source = "arena", qualifiedByName = "arenaToDto")
+    @Mapping(target = "arena", source = "arena", qualifiedByName = "arenaToDto" , ignore = true)
     @Mapping(target = "descricao", source = "descricao")
     @Mapping(target = "times", source = "times")
     TorneioResponse toResponse(Torneio entity);

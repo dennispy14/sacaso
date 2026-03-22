@@ -3,12 +3,14 @@ package com.br.sacaso.api.dto.torneio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.br.sacaso.api.dto.arena.ArenaRequest;
+
 public record TorneioRequest(
                 String nome,
                 LocalDate startDate,
                 LocalDate endDate,
                 LocalTime startTime,
-                Long arenaId,
+                ArenaRequest arena,
                 String descricao,
                 String status,
                 String modalidade,

@@ -18,7 +18,11 @@ public class Arena {
 
     private String nome;
 
-    private String Local;
+    private String local;
+    private String bairro;
+    private String cidade;
+    private String imagemUrl;
+
 
     @ManyToMany
     @JoinTable(

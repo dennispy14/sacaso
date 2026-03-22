@@ -22,16 +22,18 @@ public class ArenaControllerImpl implements ArenaController {
     @Override
     public ResponseEntity<List<ArenaResponse>> listar() {
         List<ArenaResponse> arenas = arenaRepository.findAll().stream()
-                .map(a -> new ArenaResponse(a.getId(), a.getNome(), a.getLocal()))
+                .map(a -> new ArenaResponse(a.getId(), a.getNome(), a.getLocal(), a.getBairro(), a.getCidade(), a.getImagemUrl()))
                 .collect(Collectors.toList());
+
         return ResponseEntity.ok(arenas);
     }
 
     @Override
     public ResponseEntity<ArenaResponse> buscarPorId(Long id) {
         return arenaRepository.findById(id)
-                .map(a -> ResponseEntity.ok(new ArenaResponse(a.getId(), a.getNome(), a.getLocal())))
+                .map(a -> ResponseEntity.ok(new ArenaResponse(a.getId(), a.getNome(), a.getLocal(), a.getBairro(), a.getCidade(), a.getImagemUrl())))
                 .orElse(ResponseEntity.notFound().build());
+
     }
 
     @Override
@@ -39,20 +41,28 @@ public class ArenaControllerImpl implements ArenaController {
         Arena arena = new Arena();
         arena.setNome(request.nome());
         arena.setLocal(request.local());
+        arena.setBairro(request.bairro());
+        arena.setCidade(request.cidade());
+        arena.setImagemUrl(request.imagemUrl());
         Arena saved = arenaRepository.save(arena);
         return ResponseEntity
                 .created(URI.create("/api/arenas/" + saved.getId()))
-                .body(new ArenaResponse(saved.getId(), saved.getNome(), saved.getLocal()));
+                .body(new ArenaResponse(saved.getId(), saved.getNome(), saved.getLocal(), saved.getBairro(), saved.getCidade(), saved.getImagemUrl()));
     }
+
 
     @Override
     public ResponseEntity<ArenaResponse> atualizar(Long id, ArenaRequest request) {
         return arenaRepository.findById(id).map(arena -> {
             arena.setNome(request.nome());
             arena.setLocal(request.local());
+            arena.setBairro(request.bairro());
+            arena.setCidade(request.cidade());
+            arena.setImagemUrl(request.imagemUrl());
             Arena saved = arenaRepository.save(arena);
-            return ResponseEntity.ok(new ArenaResponse(saved.getId(), saved.getNome(), saved.getLocal()));
+            return ResponseEntity.ok(new ArenaResponse(saved.getId(), saved.getNome(), saved.getLocal(), saved.getBairro(), saved.getCidade(), saved.getImagemUrl()));
         }).orElse(ResponseEntity.notFound().build());
+
     }
 
     @Override
