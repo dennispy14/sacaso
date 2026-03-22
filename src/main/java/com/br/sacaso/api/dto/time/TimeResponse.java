@@ -7,5 +7,6 @@ public record TimeResponse(
                 Long id,
                 String name,
                 String category,
+                String imageUrl,
                 List<JogadorResponse> jogadores) {
 }

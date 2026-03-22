@@ -11,7 +11,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, uses = {TimeMapper.class})
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, uses = {TimeMapper.class, ArenaMapper.class})
 public interface TorneioMapper {
 
     @Mapping(target = "nome", source = "nome")
@@ -26,7 +26,7 @@ public interface TorneioMapper {
     @Mapping(target = "startDate", source = "dataInicio")
     @Mapping(target = "endDate", source = "dataFim")
     @Mapping(target = "startTime", source = "horaInicio")
-    @Mapping(target = "arena", source = "arena", qualifiedByName = "arenaToDto" , ignore = true)
+    @Mapping(target = "arena", source = "arena")
     @Mapping(target = "descricao", source = "descricao")
     @Mapping(target = "times", source = "times")
     TorneioResponse toResponse(Torneio entity);
@@ -38,10 +38,4 @@ public interface TorneioMapper {
     @Mapping(target = "descricao", source = "descricao")
     @Mapping(target = "arena", ignore = true)
     void updateEntityFromRequest(TorneioRequest request, @MappingTarget Torneio entity);
-
-    @Named("arenaToDto")
-    default ArenaResponse arenaToDto(Arena arena) {
-        if (arena == null) return null;
-        return new ArenaResponse(arena.getId(), arena.getNome(), arena.getLocal());
-    }
 }

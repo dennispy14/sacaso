@@ -13,6 +13,7 @@ public interface JogadorMapper {
     @Mapping(target = "genero", source = "gender")
     @Mapping(target = "posicao", source = "position")
     @Mapping(target = "time.nome", source = "team")
+    @Mapping(target = "imagemUrl", source = "imageUrl")
     Jogador toEntity(JogadorRequest request);
 
     @Mapping(target = "name", source = "nome")
@@ -20,6 +21,7 @@ public interface JogadorMapper {
     @Mapping(target = "gender", source = "genero")
     @Mapping(target = "position", source = "posicao")
     @Mapping(target = "team", source = "time.nome")
+    @Mapping(target = "imageUrl", source = "imagemUrl")
     JogadorResponse toResponse(Jogador entity);
 
     @Mapping(target = "nome", source = "name")
@@ -27,6 +29,7 @@ public interface JogadorMapper {
     @Mapping(target = "genero", source = "gender")
     @Mapping(target = "posicao", source = "position")
     @Mapping(target = "time.nome", source = "team")
+    @Mapping(target = "imagemUrl", source = "imageUrl")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromRequest(JogadorRequest request, @MappingTarget Jogador entity);
 }

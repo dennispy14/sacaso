@@ -10,7 +10,7 @@ public record TorneioRequest(
                 LocalDate startDate,
                 LocalDate endDate,
                 LocalTime startTime,
-                ArenaRequest arena,
+                Long arenaId,
                 String descricao,
                 String status,
                 String modalidade,

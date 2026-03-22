@@ -20,6 +20,7 @@ public class Time {
     private String nome;
 
     private String categoria;
+    private String imagemUrl;
 
     @OneToMany(mappedBy = "time")
     private List<Jogador> jogadores;

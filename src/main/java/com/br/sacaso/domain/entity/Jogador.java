@@ -27,6 +27,7 @@ public class Jogador {
     private String status;
 
     private String cidade;
+    private String imagemUrl;
 
     @ManyToOne
     @JoinColumn(name = "time_id")

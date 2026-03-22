@@ -6,5 +6,6 @@ public record JogadorRequest(
                 String gender,
                 String position,
                 String status,
-                String team) {
+                String team,
+                String imageUrl) {
 }
