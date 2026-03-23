@@ -68,7 +68,6 @@ public class PartidaServiceImpl implements PartidaService {
         var partida = partidaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Partida não encontrada"));
 
-        // validação básica de transição de status
         if (!isValidTransition(partida.getStatus(), novoStatus)) {
             throw new IllegalStateException(
                     "Transição de status inválida: " + partida.getStatus() + " -> " + novoStatus);
@@ -82,13 +81,13 @@ public class PartidaServiceImpl implements PartidaService {
     private boolean isValidTransition(StatusPartida atual, StatusPartida novoStatus) {
         if (atual == null)
             return true;
+
         switch (atual) {
             case AGENDADA:
                 return novoStatus == StatusPartida.EM_ANDAMENTO || novoStatus == StatusPartida.CANCELADA;
             case EM_ANDAMENTO:
                 return novoStatus == StatusPartida.FINALIZADA || novoStatus == StatusPartida.CANCELADA;
             case FINALIZADA:
-                // permitir reabertura só com regra/flag especial (não permitida por padrão)
                 return false;
             case CANCELADA:
                 return false;
@@ -101,8 +100,10 @@ public class PartidaServiceImpl implements PartidaService {
     public void reordenar(List<Long> partidaIds) {
         for (int i = 0; i < partidaIds.size(); i++) {
             Long partId = partidaIds.get(i);
+            final int ordem = i;
+
             partidaRepository.findById(partId).ifPresent(p -> {
-                p.setOrdem(i);
+                p.setOrdem(ordem);
                 partidaRepository.save(p);
             });
         }
