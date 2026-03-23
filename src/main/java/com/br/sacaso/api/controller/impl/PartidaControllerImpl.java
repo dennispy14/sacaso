@@ -1,7 +1,6 @@
 package com.br.sacaso.api.controller.impl;
 
 import com.br.sacaso.api.controller.PartidaController;
-import com.br.sacaso.api.dto.partida.PartidaRequest;
 import com.br.sacaso.api.dto.partida.PartidaResponse;
 import com.br.sacaso.api.dto.partida.PartidaStatusRequest;
 import com.br.sacaso.domain.service.PartidaService;

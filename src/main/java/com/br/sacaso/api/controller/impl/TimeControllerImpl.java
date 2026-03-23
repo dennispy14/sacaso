@@ -1,3 +1,9 @@
+package com.br.sacaso.api.controller.impl;
+
+import com.br.sacaso.api.controller.TimeController;
+import com.br.sacaso.api.dto.time.TimeRequest;
+import com.br.sacaso.api.dto.time.TimeResponse;
+import com.br.sacaso.domain.service.impl.TimeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
