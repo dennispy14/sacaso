@@ -1,14 +1,17 @@
 package com.br.sacaso.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "jogadores")
 public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +35,4 @@ public class Jogador {
     @ManyToOne
     @JoinColumn(name = "time_id")
     private Time time;
-}
+}

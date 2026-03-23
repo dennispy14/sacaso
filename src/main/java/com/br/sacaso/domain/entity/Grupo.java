@@ -1,16 +1,17 @@
 package com.br.sacaso.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 @Table(name = "grupos")
 public class Grupo {
 
@@ -33,3 +34,4 @@ public class Grupo {
     @OrderColumn(name = "ordem")
     private List<Time> times;
 }
+

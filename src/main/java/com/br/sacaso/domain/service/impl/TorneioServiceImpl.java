@@ -29,6 +29,9 @@ public class TorneioServiceImpl implements TorneioService {
     @Override
     public TorneioResponse criar(TorneioRequest request) {
         Torneio entity = mapper.toEntity(request);
+        if (entity.getConfig() != null && entity.getConfig().getPhases() != null) {
+            System.out.println("Salvar Torneio com " + entity.getConfig().getPhases().size() + " fases");
+        }
         if (request.arenaId() != null) {
             Arena arena = arenaRepository.findById(request.arenaId())
                     .orElseThrow(() -> new RuntimeException("Arena não encontrada"));

@@ -3,14 +3,18 @@ package com.br.sacaso.domain.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "arenas")
 public class Arena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +35,4 @@ public class Arena {
         inverseJoinColumns = @JoinColumn(name = "quadra_id")
     )
     private List<Quadra> quadras;
-
-    
 }

@@ -3,7 +3,6 @@ package com.br.sacaso.api.dto.torneio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.br.sacaso.api.dto.arena.ArenaRequest;
 
 public record TorneioRequest(
                 String nome,
@@ -14,5 +13,6 @@ public record TorneioRequest(
                 String descricao,
                 String status,
                 String modalidade,
-                String categoria) {
+                String categoria,
+                TournamentConfigDTO config) {
 }

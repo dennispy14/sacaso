@@ -1,18 +1,25 @@
 package com.br.sacaso.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Data
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Getter
+@Setter
+@Table(name = "torneios")
 public class Torneio {
 
     @Id
@@ -47,4 +54,7 @@ public class Torneio {
     )
     private List<Time> times;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tournament_config_id")
+    private TournamentConfig config;
 }

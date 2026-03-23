@@ -1,29 +1,23 @@
 package com.br.sacaso.domain.entity;
 
 import jakarta.persistence.*;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "times")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Time {
-
+@Entity
+public class GroupConfig {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
-    private String categoria;
-    private String imagemUrl;
-
-    @OneToMany(mappedBy = "time")
-    private List<Jogador> jogadores;
+    private Integer numberOfGroups;
+    private Integer teamsPerGroup;
+    private String matchFormat;
 }
+

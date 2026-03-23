@@ -3,16 +3,18 @@ package com.br.sacaso.domain.entity;
 import com.br.sacaso.domain.enums.FaseTorneio;
 import com.br.sacaso.domain.enums.StatusPartida;
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter @Setter
+@Table(name = "partidas")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "partidas")
 public class Partida {
 
     @Id

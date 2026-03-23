@@ -1,13 +1,6 @@
-package com.br.sacaso.api.controller.impl;
-
-import com.br.sacaso.api.controller.JogadorController;
-import com.br.sacaso.api.dto.jogador.JogadorRequest;
-import com.br.sacaso.api.dto.jogador.JogadorResponse;
-import com.br.sacaso.domain.service.impl.JogadorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController

@@ -17,5 +17,6 @@ public record TorneioResponse(
                 String status,
                 String modalidade,
                 String categoria,
-                List<TimeResponse> times) {
+                List<TimeResponse> times,
+                TournamentConfigDTO config) {
 }
