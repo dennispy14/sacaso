@@ -39,6 +39,10 @@ public class Partida {
     @Enumerated(EnumType.STRING)
     private FaseTorneio fase;
 
+    private String nomeGrupo;
+    
+    private Integer ordem;
+
     @Enumerated(EnumType.STRING)
     private StatusPartida status;
 }

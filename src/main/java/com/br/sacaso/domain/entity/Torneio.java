@@ -37,6 +37,8 @@ public class Torneio {
 
     private String categoria;  // Misto | Feminino | Masculino
 
+    private String status; // planejado | em_andamento | finalizado
+
     @ManyToMany
     @JoinTable(
         name = "torneio_times",

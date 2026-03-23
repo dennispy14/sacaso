@@ -26,12 +26,18 @@ public class PartidaControllerImpl implements PartidaController {
 
     @Override
     public ResponseEntity<List<PartidaResponse>> listarPorTorneio(Long torneioId) {
-        return null;
+        return ResponseEntity.ok(partidaService.listarPorTorneio(torneioId));
     }
 
     @Override
     public ResponseEntity<PartidaResponse> atualizarStatus(Long id, PartidaStatusRequest request) {
         var response = partidaService.atualizarStatus(id, request.status());
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<Void> reordenar(List<Long> partidaIds) {
+        partidaService.reordenar(partidaIds);
+        return ResponseEntity.ok().build();
     }
 }

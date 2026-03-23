@@ -20,6 +20,8 @@ public interface PartidaMapper {
     @Mapping(target = "timeB", source = "timeB")
     @Mapping(target = "dataHora", source = "request.dateTime")
     @Mapping(target = "fase", source = "request.phase")
+    @Mapping(target = "nomeGrupo", source = "request.nomeGrupo")
+    @Mapping(target = "ordem", source = "request.ordem")
     Partida toEntity(PartidaRequest request, Torneio torneio, Time timeA, Time timeB);
 
     // MapStruct resolve automaticamente os getters
@@ -30,8 +32,9 @@ public interface PartidaMapper {
     @Mapping(target = "scoreB", source = "placarB")
     @Mapping(target = "dateTime", source = "dataHora")
     @Mapping(target = "phase", source = "fase")
-    @Mapping(target = "phaseDescription", source = "fase") // Precisa de um qualificador se quiser a descrição? Ou
-                                                           // MapStruct resolve enum?
+    @Mapping(target = "phaseDescription", source = "fase") // Precisa de um qualificador se quiser a descrição? Ou MapStruct resolve enum?
+    @Mapping(target = "nomeGrupo", source = "nomeGrupo")
+    @Mapping(target = "ordem", source = "ordem")
     PartidaResponse toResponse(Partida partida);
 
     @Mapping(target = "status", ignore = true)

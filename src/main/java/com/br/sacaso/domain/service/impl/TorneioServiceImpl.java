@@ -76,6 +76,11 @@ public class TorneioServiceImpl implements TorneioService {
     public void vincularTime(Long torneioId, Long timeId) {
         Torneio torneio = repository.findById(torneioId)
                 .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
+        
+        if (torneio.getStatus() != null && !torneio.getStatus().equals("planejado")) {
+            throw new RuntimeException("Não é permitido vincular times após o início do torneio");
+        }
+
         Time time = timeRepository.findById(timeId)
                 .orElseThrow(() -> new RuntimeException("Time não encontrado"));
 
@@ -93,6 +98,11 @@ public class TorneioServiceImpl implements TorneioService {
     public void desvincularTime(Long torneioId, Long timeId) {
         Torneio torneio = repository.findById(torneioId)
                 .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
+
+        if (torneio.getStatus() != null && !torneio.getStatus().equals("planejado")) {
+            throw new RuntimeException("Não é permitido desvincular times após o início do torneio");
+        }
+
         Time time = timeRepository.findById(timeId)
                 .orElseThrow(() -> new RuntimeException("Time não encontrado"));
 

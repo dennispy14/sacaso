@@ -15,5 +15,7 @@ public record PartidaResponse(
                 LocalDateTime dateTime,
                 FaseTorneio phase,
                 String phaseDescription,
+                String nomeGrupo,
+                Integer ordem,
                 StatusPartida status) {
 }

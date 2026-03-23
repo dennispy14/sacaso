@@ -96,4 +96,15 @@ public class PartidaServiceImpl implements PartidaService {
                 return false;
         }
     }
+
+    @Override
+    public void reordenar(List<Long> partidaIds) {
+        for (int i = 0; i < partidaIds.size(); i++) {
+            Long partId = partidaIds.get(i);
+            partidaRepository.findById(partId).ifPresent(p -> {
+                p.setOrdem(i);
+                partidaRepository.save(p);
+            });
+        }
+    }
 }

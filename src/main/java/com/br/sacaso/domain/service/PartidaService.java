@@ -17,4 +17,6 @@ public interface PartidaService {
 
     PartidaResponse atualizarStatus(Long id, StatusPartida novoStatus);
 
+    void reordenar(List<Long> partidaIds);
+
 }

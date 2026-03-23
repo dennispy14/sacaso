@@ -8,5 +8,7 @@ public record PartidaRequest(
                 Long teamAId,
                 Long teamBId,
                 LocalDateTime dateTime,
-                FaseTorneio phase) {
+                FaseTorneio phase,
+                String nomeGrupo,
+                Integer ordem) {
 }

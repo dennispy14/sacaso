@@ -22,4 +22,7 @@ public interface PartidaController {
     ResponseEntity<PartidaResponse> atualizarStatus(@PathVariable Long id,
                                                     @RequestBody PartidaStatusRequest request);
 
+    @PutMapping("/reordenar")
+    ResponseEntity<Void> reordenar(@RequestBody List<Long> partidaIds);
+
 }
