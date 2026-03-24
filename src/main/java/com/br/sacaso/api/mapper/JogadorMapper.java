@@ -8,6 +8,9 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface JogadorMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "apelido", ignore = true)
+    @Mapping(target = "cidade", ignore = true)
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "idade", source = "age")
     @Mapping(target = "genero", source = "gender")
@@ -24,6 +27,9 @@ public interface JogadorMapper {
     @Mapping(target = "imageUrl", source = "imagemUrl")
     JogadorResponse toResponse(Jogador entity);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "apelido", ignore = true)
+    @Mapping(target = "cidade", ignore = true)
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "idade", source = "age")
     @Mapping(target = "genero", source = "gender")

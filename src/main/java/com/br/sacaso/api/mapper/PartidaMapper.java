@@ -14,7 +14,9 @@ import org.mapstruct.MappingTarget;
 public interface PartidaMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "status", ignore = true) // será definido no service
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "placarA", ignore = true)
+    @Mapping(target = "placarB", ignore = true)
     @Mapping(target = "torneio", source = "torneio")
     @Mapping(target = "timeA", source = "timeA")
     @Mapping(target = "timeB", source = "timeB")
@@ -24,7 +26,6 @@ public interface PartidaMapper {
     @Mapping(target = "ordem", source = "request.ordem")
     Partida toEntity(PartidaRequest request, Torneio torneio, Time timeA, Time timeB);
 
-    // MapStruct resolve automaticamente os getters
     @Mapping(target = "tournamentId", source = "torneio.id")
     @Mapping(target = "teamAId", source = "timeA.id")
     @Mapping(target = "teamBId", source = "timeB.id")
@@ -32,11 +33,19 @@ public interface PartidaMapper {
     @Mapping(target = "scoreB", source = "placarB")
     @Mapping(target = "dateTime", source = "dataHora")
     @Mapping(target = "phase", source = "fase")
-    @Mapping(target = "phaseDescription", source = "fase") // Precisa de um qualificador se quiser a descrição? Ou MapStruct resolve enum?
+    @Mapping(target = "phaseDescription", source = "fase")
     @Mapping(target = "nomeGrupo", source = "nomeGrupo")
     @Mapping(target = "ordem", source = "ordem")
     PartidaResponse toResponse(Partida partida);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "torneio", ignore = true)
+    @Mapping(target = "timeA", ignore = true)
+    @Mapping(target = "timeB", ignore = true)
+    @Mapping(target = "dataHora", ignore = true)
+    @Mapping(target = "fase", ignore = true)
+    @Mapping(target = "nomeGrupo", ignore = true)
+    @Mapping(target = "ordem", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "placarA", source = "scoreTeamA")
     @Mapping(target = "placarB", source = "scoreTeamB")

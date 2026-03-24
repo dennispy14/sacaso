@@ -8,21 +8,23 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import com.br.sacaso.api.mapper.JogadorMapper;
 
 @Mapper(componentModel = "spring", uses = {JogadorMapper.class})
 public interface TimeMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "jogadores", ignore = true)
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "categoria", source = "category")
     @Mapping(target = "imagemUrl", source = "imageUrl")
     Time toEntity(TimeRequest request);
 
     @Mapping(target = "name", source = "nome")
-    @Mapping(target = "category", source = "categoria")    
+    @Mapping(target = "category", source = "categoria")
     @Mapping(target = "imageUrl", source = "imagemUrl")
-    // jogadores mapping is automatic via the entity
     TimeResponse toResponse(Time entity);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "jogadores", ignore = true)
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "categoria", source = "category")
     @Mapping(target = "imagemUrl", source = "imageUrl")

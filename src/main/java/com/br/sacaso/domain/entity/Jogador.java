@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "jogadores")
+@Table(name = "jogador")
 public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +35,4 @@ public class Jogador {
     @ManyToOne
     @JoinColumn(name = "time_id")
     private Time time;
-}
+}

@@ -11,12 +11,14 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, uses = {TimeMapper.class, ArenaMapper.class})
 public interface TorneioMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "nome", source = "nome")
     @Mapping(target = "dataInicio", source = "startDate")
     @Mapping(target = "dataFim", source = "endDate")
     @Mapping(target = "horaInicio", source = "startTime")
     @Mapping(target = "descricao", source = "descricao")
     @Mapping(target = "arena", ignore = true)
+    @Mapping(target = "times", ignore = true)
     @Mapping(target = "config", source = "config")
     Torneio toEntity(TorneioRequest request);
 
@@ -45,12 +47,14 @@ public interface TorneioMapper {
     @Mapping(target = "config", source = "config")
     TorneioResponse toResponse(Torneio entity);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "nome", source = "nome")
     @Mapping(target = "dataInicio", source = "startDate")
     @Mapping(target = "dataFim", source = "endDate")
     @Mapping(target = "horaInicio", source = "startTime")
     @Mapping(target = "descricao", source = "descricao")
     @Mapping(target = "arena", ignore = true)
+    @Mapping(target = "times", ignore = true)
     @Mapping(target = "config", source = "config")
     void updateEntityFromRequest(TorneioRequest request, @MappingTarget Torneio entity);
 }

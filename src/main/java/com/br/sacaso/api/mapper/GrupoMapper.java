@@ -11,6 +11,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, uses = {TimeMapper.class})
 public interface GrupoMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "torneio", ignore = true)
     @Mapping(target = "times", ignore = true)
     Grupo toEntity(GrupoRequest request);
@@ -18,6 +19,7 @@ public interface GrupoMapper {
     @Mapping(target = "torneioId", source = "torneio.id")
     GrupoResponse toResponse(Grupo entity);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "torneio", ignore = true)
     @Mapping(target = "times", ignore = true)
     void updateEntityFromRequest(GrupoRequest request, @MappingTarget Grupo entity);
