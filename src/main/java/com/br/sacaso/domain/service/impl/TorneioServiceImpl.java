@@ -79,7 +79,7 @@ public class TorneioServiceImpl implements TorneioService {
     public void vincularTime(Long torneioId, Long timeId) {
         Torneio torneio = repository.findById(torneioId)
                 .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
-        
+
         if (torneio.getStatus() != null && !torneio.getStatus().equals("planejado")) {
             throw new RuntimeException("Não é permitido vincular times após o início do torneio");
         }
@@ -90,7 +90,11 @@ public class TorneioServiceImpl implements TorneioService {
         if (torneio.getTimes() == null) {
             torneio.setTimes(new ArrayList<>());
         }
-        if (!torneio.getTimes().contains(time)) {
+
+        boolean alreadyLinked = torneio.getTimes().stream()
+                .anyMatch(existingTime -> existingTime.getId().equals(time.getId()));
+
+        if (!alreadyLinked) {
             torneio.getTimes().add(time);
             repository.save(torneio);
         }
@@ -106,12 +110,11 @@ public class TorneioServiceImpl implements TorneioService {
             throw new RuntimeException("Não é permitido desvincular times após o início do torneio");
         }
 
-        Time time = timeRepository.findById(timeId)
-                .orElseThrow(() -> new RuntimeException("Time não encontrado"));
-
-        if (torneio.getTimes() != null && torneio.getTimes().contains(time)) {
-            torneio.getTimes().remove(time);
-            repository.save(torneio);
+        if (torneio.getTimes() != null) {
+            boolean removed = torneio.getTimes().removeIf(existingTime -> existingTime.getId().equals(timeId));
+            if (removed) {
+                repository.save(torneio);
+            }
         }
     }
 }
