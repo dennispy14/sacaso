@@ -22,6 +22,7 @@ public class TournamentConfig {
     @JoinColumn(name = "game_rules_id")
     private GameRules gameRules;
 
+    @Deprecated
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "tournament_config_id")
     @Builder.Default

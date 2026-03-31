@@ -36,9 +36,9 @@ public record TournamentConfigDTO(
 
     public record SeriesConfigDTO(
         Boolean enabled,
-        Integer gold,
-        Integer silver,
-        Integer bronze,
+        String gold,
+        String silver,
+        String bronze,
         Integer numberOfSeries,
         Integer teamsPerSeries,
         String matchFormat

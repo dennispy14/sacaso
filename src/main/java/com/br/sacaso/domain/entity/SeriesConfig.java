@@ -17,9 +17,9 @@ public class SeriesConfig {
     private Long id;
 
     private Boolean enabled;
-    private Integer gold;
-    private Integer silver;
-    private Integer bronze;
+    private String gold;
+    private String silver;
+    private String bronze;
     private Integer numberOfSeries;
     private Integer teamsPerSeries;
     private String matchFormat;
