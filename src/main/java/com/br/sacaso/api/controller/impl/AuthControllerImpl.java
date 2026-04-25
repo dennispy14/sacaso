@@ -13,6 +13,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
+import com.br.sacaso.domain.enums.Role;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,12 +35,12 @@ public class AuthControllerImpl implements AuthController {
                 .username(request.username())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
-                .role(request.role())
+                .roles(request.roles() != null && !request.roles().isEmpty() ? request.roles() : Set.of(Role.ESPECTADOR))
                 .build();
 
         repository.save(user);
         String token = jwtService.generateToken(user);
-        return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRole().name()));
+        return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRoles().stream().map(Enum::name).toList()));
     }
 
     @Override
@@ -51,6 +53,6 @@ public class AuthControllerImpl implements AuthController {
                 .orElseThrow();
         
         String token = jwtService.generateToken(user);
-        return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRole().name()));
+        return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRoles().stream().map(Enum::name).toList()));
     }
 }
