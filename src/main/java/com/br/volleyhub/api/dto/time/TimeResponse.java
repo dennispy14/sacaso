@@ -1,0 +1,12 @@
+package com.br.volleyhub.api.dto.time;
+
+import com.br.volleyhub.api.dto.jogador.JogadorResponse;
+import java.util.List;
+
+public record TimeResponse(
+                Long id,
+                String name,
+                String category,
+                String imageUrl,
+                List<JogadorResponse> jogadores) {
+}
